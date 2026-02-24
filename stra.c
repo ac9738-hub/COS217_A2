@@ -76,7 +76,7 @@ int Str_compare(const char s1[], const char s2[]) {
 
 }
 
-static int search(const char haystack[], const char needle[], int count) {
+static int search(const char haystack[], const char needle[], size_t count) {
 
     size_t count1 = 0;
 
