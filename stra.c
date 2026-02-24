@@ -85,10 +85,10 @@ int Str_compare(const char s1[], const char s2[]) {
 0, if no, -1 if remaining haystack is shorter than needle */
 static int Str_searcher(const char haystack[], const char needle[], size_t count) {
 
+    size_t count1 = 0;
+
     assert(haystack != NULL);
     assert(needle != NULL);
-
-    size_t count1 = 0;
 
     while (haystack[count + count1] != '\0' && needle[count1] != '\0') {
         if (haystack[count + count1] != needle[count1]) return 0;
