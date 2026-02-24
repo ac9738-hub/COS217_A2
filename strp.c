@@ -86,6 +86,9 @@ int Str_compare(const char s1[], const char s2[]) {
 /* determine whether needle is at the index count of haystack. Return 1 if yes
 0, if no, -1 if remaining haystack is shorter than needle */
 static int Str_searcher(const char haystack[], const char needle[]) {
+
+    assert(haystack != NULL);
+    assert(needle != NULL);
     const char *temp1 = haystack;
     const char *temp2 = needle;
 
