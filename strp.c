@@ -23,7 +23,7 @@ char *Str_copy(char dest[], const char source[]) {
     const char *temps = source;
 
 
-    assert(dest != NULL)
+    assert(dest != NULL);
     assert(source != NULL);
 
     while (*temps != '\0') {
@@ -101,7 +101,7 @@ char *Str_search(const char haystack[], const char needle[]) {
     assert(haystack != NULL);
     assert(needle != NULL);
 
-    if (*needle == '\0') return haystack;
+    if (*needle == '\0') return (char *) haystack;
 
     while(*temphaystack != '\0') {
         
