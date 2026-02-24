@@ -76,6 +76,21 @@ int Str_compare(const char s1[], const char s2[]) {
 
 }
 
+static int search(const char haystack[], const char needle[], int count) {
+
+    size_t count1 = 0;
+
+    while (haystack[count + count1] != '\0' && needle[count1] != '\0') {
+        if (haystack[count + count1] != needle[count1]) return 0;
+        
+        count1++;
+    }
+
+    if ( needle[count1] == '\0') return 1;
+
+    return -1;
+}
+
 char *Str_search(const char haystack[], const char needle[]) {
 
     assert(haystack != NULL);
@@ -105,17 +120,3 @@ char *Str_search(const char haystack[], const char needle[]) {
     return NULL;    
 }
 
-static int search(const char haystack[], const char needle[], int count) {
-
-    size_t count1 = 0;
-
-    while (haystack[count + count1] != '\0' && needle[count1] != '\0') {
-        if (haystack[count + count1] != needle[count1]) return 0;
-        
-        count1++;
-    }
-
-    if ( needle[count1] == '\0') return 1;
-
-    return -1;
-}
