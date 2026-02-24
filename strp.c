@@ -19,11 +19,12 @@ size_t Str_getLength(const char pcSrc[]){
 
 char *Str_copy(char dest[], const char source[]) {
 
-    assert(dest != NULL);
-    assert(source != NULL);
-
     char *tempd = dest;
     const char *temps = source;
+
+
+    assert(dest != NULL)
+    assert(source != NULL);
 
     while (*temps != '\0') {
         *tempd = *temps;
@@ -38,11 +39,11 @@ char *Str_copy(char dest[], const char source[]) {
 
 char *Str_concat(char dest[], const char source[]) {
 
+        char *tempd = dest + Str_getLength(dest);
+    const char *temps = source;
+
     assert(dest != NULL);
     assert(source != NULL);
-
-    char *tempd = dest + Str_getLength(dest);
-    const char *temps = source;
 
     while (*temps != '\0') {
         *tempd = *temps;
@@ -57,12 +58,12 @@ char *Str_concat(char dest[], const char source[]) {
 }
 
 int Str_compare(const char s1[], const char s2[]) {
-    
-    assert(s1 != NULL);
-    assert(s2 != NULL);
 
     const char *temp1 = s1;
     const char *temp2 = s2;
+    
+    assert(s1 != NULL);
+    assert(s2 != NULL);
 
     while(*temp1 != '\0' || *temp2 != '\0') {
         
@@ -79,6 +80,7 @@ int Str_compare(const char s1[], const char s2[]) {
 static int search(const char haystack[], const char needle[]) {
     const char *temp1 = haystack;
     const char *temp2 = needle;
+
     while (*temp1 != '\0' && *temp2 != '\0') {
         if (*temp1 != *temp2) return 0;
         
@@ -93,13 +95,13 @@ static int search(const char haystack[], const char needle[]) {
 
 char *Str_search(const char haystack[], const char needle[]) {
 
+    const char *tempneedle = needle;
+    const char *temphaystack = haystack;
+
     assert(haystack != NULL);
     assert(needle != NULL);
 
     if (*needle == '\0') return haystack;
-
-    const char *tempneedle = needle;
-    const char *temphaystack = haystack;
 
     while(*temphaystack != '\0') {
         
