@@ -19,7 +19,7 @@ with the first character of source replacing the null terminator and
 adds an additional null terminator to the end of the new string. 
 Does not work if there is not enough memory at dest to hold new 
 string returns address of dest */
-char *Str_concat(const char dest[], char source[]);
+char *Str_concat(char dest[], char source[]);
 
 /* Takes 2 string arguments s1 and s2. compares the two 
 lexicographically and returns an int.
