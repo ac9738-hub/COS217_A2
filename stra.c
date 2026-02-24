@@ -4,10 +4,10 @@
 
 
 size_t Str_getLength(const char pcSrc[]){
-    
-    assert(pcSrc != NULL);
 
     size_t count = 0;
+    
+    assert(pcSrc != NULL);
     
     while(pcSrc[count] != '\0') {
         count++;
@@ -18,11 +18,11 @@ size_t Str_getLength(const char pcSrc[]){
 
 char *Str_copy(char dest[], const char source[]) {
 
+    size_t count = 0;
+
     assert(dest != NULL);
     assert(source != NULL);
     
-    size_t count = 0;
-
     while (source[count] != '\0') {
         dest[count] = source[count];
         count ++;
@@ -35,11 +35,11 @@ char *Str_copy(char dest[], const char source[]) {
 
 char *Str_concat(char dest[], const char source[]) {
 
-    assert(dest != NULL);
-    assert(source != NULL);
-
     size_t count1 = 0;
     size_t count2 = 0;
+
+    assert(dest != NULL);
+    assert(source != NULL);
 
     while (dest[count1] != '\0') count1 ++;
 
@@ -55,11 +55,11 @@ char *Str_concat(char dest[], const char source[]) {
 }
 
 int Str_compare(const char s1[], const char s2[]) {
-    
-    assert(s1 != NULL);
-    assert(s2 != NULL);
 
     size_t count = 0;
+
+    assert(s1 != NULL);
+    assert(s2 != NULL);
 
     while (s1[count] != '\0' && s2[count] != '\0') {
         if(s1[count] < s2[count]) return -1;
@@ -93,12 +93,12 @@ static int search(const char haystack[], const char needle[], int count) {
 
 char *Str_search(const char haystack[], const char needle[]) {
 
+    size_t count = 0;
+
     assert(haystack != NULL);
     assert(needle != NULL);
 
     if (needle[0] == '\0') return (char *) haystack;
-
-    size_t count = 0;
 
     while(haystack[count] != '\0') {
         if(haystack[count] == needle[0]) {
