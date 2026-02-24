@@ -1,3 +1,9 @@
+/*--------------------------------------------------------------------*/
+/* strp.c                                                         */
+/* Author: Allen Chen                                               */
+/*--------------------------------------------------------------------*/
+
+
 #include <stdio.h>
 #include <assert.h>
 #include "str.h"
@@ -77,7 +83,9 @@ int Str_compare(const char s1[], const char s2[]) {
     return 0;
 }
 
-static int search(const char haystack[], const char needle[]) {
+/* determine whether needle is at the index count of haystack. Return 1 if yes
+0, if no, -1 if remaining haystack is shorter than needle */
+static int Str_searcher(const char haystack[], const char needle[]) {
     const char *temp1 = haystack;
     const char *temp2 = needle;
 
@@ -107,7 +115,7 @@ char *Str_search(const char haystack[], const char needle[]) {
         
         if (*tempneedle == *temphaystack) {
             
-            int retval = search(temphaystack, tempneedle);
+            int retval = Str_searcher(temphaystack, tempneedle);
 
             if (retval == 1) return (char *) temphaystack;
 
