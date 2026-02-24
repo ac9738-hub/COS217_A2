@@ -1,3 +1,9 @@
+/*--------------------------------------------------------------------*/
+/* str.h                                                          */
+/* Author: Allen Chen                                               */
+/*--------------------------------------------------------------------*/
+
+
 #ifndef STR_H
 #define STR_H
 
@@ -35,6 +41,5 @@ none exist*/
 char *Str_search(const char haystack[], const char needle[]);
 
 #endif
-
 
 
