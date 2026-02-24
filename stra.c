@@ -1,3 +1,9 @@
+/*--------------------------------------------------------------------*/
+/* stra.c                                                          */
+/* Author: Allen Chen                                               */
+/*--------------------------------------------------------------------*/
+
+
 #include <stdio.h>
 #include <assert.h>
 #include "str.h"
@@ -75,8 +81,12 @@ int Str_compare(const char s1[], const char s2[]) {
     return 1;
 
 }
+/* determine whether needle is at this index of haystack. Return 1 if yes
+0, if no, -1 if remaining haystack is shorter than needle */
+static int Str_searcher(const char haystack[], const char needle[], size_t count) {
 
-static int search(const char haystack[], const char needle[], size_t count) {
+    assert(haystack != NULL);
+    assert(needle != NULL);
 
     size_t count1 = 0;
 
@@ -103,7 +113,7 @@ char *Str_search(const char haystack[], const char needle[]) {
     while(haystack[count] != '\0') {
         if(haystack[count] == needle[0]) {
 
-            int val = search(haystack, needle, count);
+            int val = Str_searcher(haystack, needle, count);
             if (val == 1) return (char *)&haystack[count];
             
             else if (val == 0){
