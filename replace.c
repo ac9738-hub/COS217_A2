@@ -20,21 +20,27 @@
 
 static size_t replaceAndWrite(const char *pcLine, const char *pcFrom, const char *pcTo){
 
+    size_t len = Str_getLength(pcFrom);
+    size_t retval = 0;
+    
     assert(pcLine != NULL);
     assert(pcFrom != NULL);
     assert(pcTo != NULL);
 
-    size_t len = Str_getLength(pcFrom);
-    size_t retval = 0;
-    
     if (*pcFrom == '\0') {
-        putchar(*pcLine);
+        while (*pcLine != '\0')
+            putchar(*pcLine);
+            pcLine ++;
+        }
         return 0;
     }
 
 
     while (*pcLine != '\0') {
         const char* temp =  Str_search(pcLine, pcFrom);
+        const char* tempto = pcTo;
+        int i;
+
 
         while (pcLine != temp && *pcLine != '\0') {
             putchar(*pcLine);
@@ -43,12 +49,14 @@ static size_t replaceAndWrite(const char *pcLine, const char *pcFrom, const char
 
         if (*pcLine == '\0') return retval;
 
-        for (int i = 0; i < len; i++) {
+        for (i = 0; i < len; i++) {
             pcLine ++;
         }
 
-        const char* tempto = pcTo;
-        fputs(pcTo, stdout);
+        while (*tempto != '\0') {
+            putchar(*tempto);
+            tempto ++;
+        }
 
         if (temp != NULL) retval ++;
         
@@ -94,7 +102,7 @@ int main(int argc, char *argv[])
             putchar(c);
         }
 
-        fprintf(stderr, "0 replacements made");
+        fprintf(stderr, "0 replacements\n");
 
         return 0;
     }
