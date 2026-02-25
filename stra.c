@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------------*/
-/* strp.c                                                         */
+/* stra.c                                                          */
 /* Author: Allen Chen                                               */
 /*--------------------------------------------------------------------*/
 
@@ -10,132 +10,123 @@
 
 
 size_t Str_getLength(const char pcSrc[]){
-    
+
     size_t count = 0;
-    const char *temp = pcSrc;
-
+    
     assert(pcSrc != NULL);
-
-    while (*temp != '\0') {
-        count ++;
-        temp ++;
+    
+    while(pcSrc[count] != '\0') {
+        count++;
     }
+
     return count;
 }
 
 char *Str_copy(char dest[], const char source[]) {
 
-    char *tempd = dest;
-    const char *temps = source;
-
+    size_t count = 0;
 
     assert(dest != NULL);
     assert(source != NULL);
-
-    while (*temps != '\0') {
-        *tempd = *temps;
-        tempd ++;
-        temps++;
+    
+    while (source[count] != '\0') {
+        dest[count] = source[count];
+        count ++;
     }
 
-    *tempd = '\0';
+    dest[count] = '\0';
 
     return dest;
 }
 
 char *Str_concat(char dest[], const char source[]) {
 
-        char *tempd = dest + Str_getLength(dest);
-    const char *temps = source;
+    size_t count1 = 0;
+    size_t count2 = 0;
 
     assert(dest != NULL);
     assert(source != NULL);
 
-    while (*temps != '\0') {
-        *tempd = *temps;
-        tempd ++;
-        temps ++;
+    while (dest[count1] != '\0') count1 ++;
+
+    while (source[count2] != '\0') {
+        dest[count1] = source[count2];
+        count1 ++;
+        count2 ++;
     }
 
-    *tempd = '\0';
-    
-    return dest;
+    dest[count1] = '\0';
 
+    return dest;
 }
 
 int Str_compare(const char s1[], const char s2[]) {
 
-    const char *temp1 = s1;
-    const char *temp2 = s2;
-    
+    size_t count = 0;
+
     assert(s1 != NULL);
     assert(s2 != NULL);
 
-    while(*temp1 != '\0' || *temp2 != '\0') {
+    while (s1[count] != '\0' && s2[count] != '\0') {
+        if(s1[count] < s2[count]) return -1;
+        if(s1[count] > s2[count]) return 1;
         
-        if (*temp1 > *temp2) return 1;
-        if (*temp1 < *temp2) return -1;
-        
-        temp1 ++;
-        temp2 ++;
+        count ++;
     }
 
-    return 0;
-}
+    if (s1[count] == s2[count]) return 0;
 
+    else if (s1[count] == '\0') return -1;
+
+    return 1;
+
+}
 /* determine whether needle is at the index count of haystack. Return 1 if yes
 0, if no, -1 if remaining haystack is shorter than needle */
-static int Str_searcher(const char haystack[], const char needle[]) {
+static int Str_searcher(const char haystack[], const char needle[], size_t count) {
 
-    const char *temp1 = haystack;
-    const char *temp2 = needle;
+    size_t count1 = 0;
 
     assert(haystack != NULL);
     assert(needle != NULL);
 
-    while (*temp1 != '\0' && *temp2 != '\0') {
-        if (*temp1 != *temp2) return 0;
+    while (haystack[count + count1] != '\0' && needle[count1] != '\0') {
+        if (haystack[count + count1] != needle[count1]) return 0;
         
-        temp1 ++;
-        temp2 ++;
+        count1++;
     }
 
-    if (*temp2 == '\0') return 1;
+    if ( needle[count1] == '\0') return 1;
 
     return -1;
 }
 
 char *Str_search(const char haystack[], const char needle[]) {
 
-    const char *tempneedle = needle;
-    const char *temphaystack = haystack;
+    size_t count = 0;
 
     assert(haystack != NULL);
     assert(needle != NULL);
 
-    if (*needle == '\0') return (char *) haystack;
+    if (needle[0] == '\0') return (char *) haystack;
 
-    while(*temphaystack != '\0') {
-        
-        if (*tempneedle == *temphaystack) {
+    while(haystack[count] != '\0') {
+        if(haystack[count] == needle[0]) {
+
+            int val = Str_searcher(haystack, needle, count);
+            if (val == 1) return (char *)&haystack[count];
             
-            int retval = Str_searcher(temphaystack, tempneedle);
-
-            if (retval == 1) return (char *) temphaystack;
-
-            else if (retval == 0) {
-                temphaystack ++;
+            else if (val == 0){
+                count ++;
                 continue;
-            }
+            } 
 
-            else return NULL;
-
+            return NULL;
         }
-        temphaystack ++;
+        
+        count ++;
     }
 
-    return NULL;
-
+    return NULL;    
 }
-
 
