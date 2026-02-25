@@ -1,3 +1,4 @@
+
 /*--------------------------------------------------------------------*/
 /* replace.c                                                          */
 /* Author: Allen Chen                                                        */
@@ -27,7 +28,7 @@ static size_t replaceAndWrite(const char *pcLine, const char *pcFrom, const char
     assert(pcTo != NULL);
 
     if (*pcFrom == '\0') {
-        while (*pcLine != '\0')
+        while (*pcLine != '\0'){
             putchar(*pcLine);
             pcLine ++;
         }
@@ -119,4 +120,3 @@ int main(int argc, char *argv[])
    fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
    return 0;
 }
-
