@@ -1,4 +1,3 @@
-
 /*--------------------------------------------------------------------*/
 /* replace.c                                                          */
 /* Author: Allen Chen                                                        */
@@ -27,6 +26,7 @@ static size_t replaceAndWrite(const char *pcLine, const char *pcFrom, const char
     assert(pcFrom != NULL);
     assert(pcTo != NULL);
 
+    /* if pcFrom is an empty string, print pcLine to output */
     if (*pcFrom == '\0') {
         while (*pcLine != '\0'){
             putchar(*pcLine);
@@ -35,29 +35,35 @@ static size_t replaceAndWrite(const char *pcLine, const char *pcFrom, const char
         return 0;
     }
 
-
+    /* main loop */
     while (*pcLine != '\0') {
+
+        /* find index of next pcFrom in pcLine */
         const char* temp =  Str_search(pcLine, pcFrom);
         const char* tempto = pcTo;
         int i;
 
-
+        /* write out everything before next index of pcFrom */
         while (pcLine != temp && *pcLine != '\0') {
             putchar(*pcLine);
             pcLine ++;
         }
 
+        /* if reached end of pcLine return */
         if (*pcLine == '\0') return retval;
 
+        /* skip pcFrom */
         for (i = 0; i < (int) len; i++) {
             pcLine ++;
         }
 
+        /* write out pcTo */
         while (*tempto != '\0') {
             putchar(*tempto);
             tempto ++;
         }
 
+        /* increment number of replacements */
         if (temp != NULL) retval ++;
         
     }
