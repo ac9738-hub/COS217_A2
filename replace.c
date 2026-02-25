@@ -49,7 +49,7 @@ static size_t replaceAndWrite(const char *pcLine, const char *pcFrom, const char
 
         if (*pcLine == '\0') return retval;
 
-        for (i = 0; i < len; i++) {
+        for (i = 0; i < (int) len; i++) {
             pcLine ++;
         }
 
